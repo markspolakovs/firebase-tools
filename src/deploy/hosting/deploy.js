@@ -16,6 +16,10 @@ module.exports = function(context, options) {
 
   var spins = 0;
   function _updateSpinner(newMessage) {
+    // Don't display the spinner in CI
+    if (process.env.CI) {
+      return;
+    }
     // don't try to rewrite lines if debugging since it's likely to get interrupted
     if (debugging) {
       utils.logLabeledBullet("hosting", newMessage);
